@@ -1,4 +1,4 @@
-export type SearchTerm = string | null;
+export type SearchTerm = string | [number, number] | null;
 
 export interface SearchControlsState {
     searchBy: string,
