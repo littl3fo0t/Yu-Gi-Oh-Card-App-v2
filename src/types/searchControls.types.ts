@@ -1,10 +1,6 @@
-type searchTerm = string | [number, number] | null;
+export type SearchTerm = string | null;
 
-export interface SearchControlsInitialState {
+export interface SearchControlsState {
     searchBy: string,
-    searchTerm: searchTerm
+    searchTerm: SearchTerm
 };
-
-export type SearchControlsAction = 
-    | { type: "SET_SEARCHBY", payload: { text: string } }
-    | { type: "SET_SEARCHTERM", payload: { searchTerm: searchTerm } }
