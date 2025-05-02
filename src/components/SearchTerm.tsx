@@ -112,3 +112,5 @@ const SearchTerm: React.FC = () => {
 };
 
 export default SearchTerm;
+
+// testing comment
