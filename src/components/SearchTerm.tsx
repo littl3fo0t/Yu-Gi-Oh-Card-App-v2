@@ -54,6 +54,13 @@ const SearchTerm: React.FC = () => {
         setMaxLevel(1);
     }, [searchBy, dispatch]);
 
+    // Set the search term when the min and max levels change
+    useEffect(() => {
+        if (searchBy === "level" && minLevel && maxLevel) {
+            dispatch(setSearchTerm([minLevel, maxLevel]));
+        }
+    }, [minLevel, maxLevel, dispatch, searchBy]);
+
     // for testing purposes
     useEffect(() => {
         console.log(`searchTerm updated: ${searchTerm}`);
