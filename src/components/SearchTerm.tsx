@@ -32,7 +32,7 @@ const SearchTerm: React.FC = () => {
 
     const [searchTermName, setSearchTermName] = useState<string | null>("");
     const [minLevel, setMinLevel] = useState<number>(0);
-    const [maxLevel, setMaxLevel] = useState<number>(0);
+    const [maxLevel, setMaxLevel] = useState<number>(1);
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -41,7 +41,7 @@ const SearchTerm: React.FC = () => {
             setSearchTermName(value);
 
             if (searchBy === "name" || searchBy === "fname") {
-                dispatch(setSearchTerm(searchTermName));
+                dispatch(setSearchTerm(value));
             }
         }
     };
@@ -68,33 +68,39 @@ const SearchTerm: React.FC = () => {
 
     if (searchBy === "name" || searchBy === "fname") {
         return (
-            <>
-                <label htmlFor="searchTermName">Search by <b>{searchBy == "name" ? "Exact" : "Fuzzy"}</b> Name:</label>
-                <input
-                    type="text"
-                    id="searchTermName"
-                    value={searchTermName ?? ""}
-                    onChange={handleNameChange}
-                />
-            </>
+            <div className="field">
+                <label htmlFor="searchTermName">Search by <strong>{searchBy == "name" ? "Exact" : "Fuzzy"}</strong> Name:</label>
+                <div className="control">
+                    <input
+                        className="input"
+                        type="text"
+                        id="searchTermName"
+                        value={searchTermName ?? ""}
+                        onChange={handleNameChange}
+                        placeholder="ex: Ash Blossom & Joyous Spring"
+                    />
+                </div>
+            </div>
         );
     } else if (searchBy === "level") {
         return (
             <>
                 <p>
-                    Retrieve all cards with a Level/Rank/Link value between 
-                    <select id="minLevel" 
-                        value={minLevel} 
-                        onChange={ (e: ChangeEvent<HTMLSelectElement>) => setMinLevel(parseInt(e.target.value)) }
+                    Retrieve all cards with a Level/Rank/Link value between
+                    <select 
+                        id="minLevel"
+                        value={minLevel}
+                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setMinLevel(parseInt(e.target.value))}
                     >
                         {levelOptions.map(level => (
                             <option key={level.value} value={level.value}>{level.label}</option>
                         ))}
                     </select>
-                    and 
-                    <select id="maxLevel"
+                    and
+                    <select 
+                        id="maxLevel"
                         value={maxLevel}
-                        onChange={ (e: ChangeEvent<HTMLSelectElement>) => setMaxLevel(parseInt(e.target.value)) }
+                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setMaxLevel(parseInt(e.target.value))}
                     >
                         {levelOptions
                             .filter(level => level.value >= minLevel)

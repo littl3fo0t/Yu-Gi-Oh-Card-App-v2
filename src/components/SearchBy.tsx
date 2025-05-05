@@ -19,15 +19,17 @@ const SearchBy: React.FC = () => {
     }, [searchBy]);
 
     return (
-        <>
-            <label htmlFor="searchBy">Search By:</label>
-            <select name="searchBy" id="searchBy" value={searchBy} onChange={handleChange}>
-                <option value="name">Exact Name</option>
-                <option value="fname">Fuzzy Name</option>
-                <option value="random">Random Card</option>
-                <option value="level">Level/Rank/Link Value</option>
-            </select>
-        </>
+        <div className="field">
+            <div className="select">
+                <select name="searchBy" id="searchBy" value={searchBy} onChange={handleChange}>
+                    <option value="">Select an Option to Seach By</option>
+                    <option value="name">Exact Name</option>
+                    <option value="fname">Fuzzy Name</option>
+                    <option value="random">Random Card</option>
+                    <option value="level">Level/Rank/Link Value</option>
+                </select>
+            </div>
+        </div>
     );
 }
 
