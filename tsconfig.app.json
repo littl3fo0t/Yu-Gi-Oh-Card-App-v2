@@ -27,7 +27,8 @@
       "@/*": ["./*"],
       "@types/*": ["types/*"],
       "@components/*": ["components/*"],
-      "@features/*": ["features/*"]
+      "@features/*": ["features/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["src"]

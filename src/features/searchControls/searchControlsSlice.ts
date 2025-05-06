@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SearchControlsState, SearchTerm } from "@/types/searchControls.types";
+import { RootState } from "@/store";
+
+const searchControlsInitialState: SearchControlsState = {
+    searchBy: "",
+    searchTerm: null
+}
 
 const searchControlsSlice = createSlice({
     name: "searchControls",
-    initialState: {
-        searchBy: "",
-        searchTerm: null
-    },
+    initialState: searchControlsInitialState,
     reducers: {
         setSearchBy: (state: SearchControlsState, action: PayloadAction<string>) => {
             state.searchBy = action.payload;
@@ -25,7 +28,7 @@ const searchControlsSlice = createSlice({
 
 export const { setSearchBy, clearSearchBy, setSearchTerm, clearSearchTerm } = searchControlsSlice.actions;
 
-export const getSearchBy = (state: SearchControlsState) => state.searchBy;
-export const getSearchTerm = (state: SearchControlsState) => state.searchTerm;
+export const getSearchBy = (state: RootState) => state.searchControls.searchBy;
+export const getSearchTerm = (state: RootState) => state.searchControls.searchTerm;
 
 export default searchControlsSlice.reducer;

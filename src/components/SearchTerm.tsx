@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store";
 import { setSearchTerm, getSearchTerm, getSearchBy, clearSearchTerm } from "@/features/searchControls/searchControlsSlice";
 
 interface LevelOptions {
@@ -27,8 +26,8 @@ const levelOptions: LevelOptions[] = [
 
 const SearchTerm: React.FC = () => {
     const dispatch = useDispatch();
-    const searchTerm = useSelector((state: RootState) => getSearchTerm(state.searchControls));
-    const searchBy = useSelector((state: RootState) => getSearchBy(state.searchControls));
+    const searchTerm = useSelector(getSearchTerm);
+    const searchBy = useSelector(getSearchBy);
 
     const [searchTermName, setSearchTermName] = useState<string | null>("");
     const [minLevel, setMinLevel] = useState<number>(0);

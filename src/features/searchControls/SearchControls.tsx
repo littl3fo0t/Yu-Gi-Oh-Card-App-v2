@@ -2,7 +2,7 @@ import React from "react";
 import SearchBy from "@/components/SearchBy";
 import SearchTerm from "@/components/SearchTerm";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
+import { AppDispatch } from "@/store";
 import { getSearchBy, getSearchTerm } from "@/features/searchControls/searchControlsSlice";
 import {
     getAllCards,
@@ -15,8 +15,8 @@ const SearchControls: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const cards = useSelector(getAllCards);
     const isLoading = useSelector(isLoadingCards);
-    const searchTerm = useSelector((state: RootState) => getSearchTerm(state.searchControls));
-    const searchBy = useSelector((state: RootState) => getSearchBy(state.searchControls));
+    const searchTerm = useSelector(getSearchTerm);
+    const searchBy = useSelector(getSearchBy);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

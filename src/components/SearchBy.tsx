@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchBy, setSearchBy } from "@/features/searchControls/searchControlsSlice";
-import { RootState } from "@/store";
 
 const SearchBy: React.FC = () => {
     const dispatch = useDispatch();
-    const searchBy = useSelector((state: RootState) => getSearchBy(state.searchControls));
+    const searchBy = useSelector(getSearchBy);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         if (e.target.value) {

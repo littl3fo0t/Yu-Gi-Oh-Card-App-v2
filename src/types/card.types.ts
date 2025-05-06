@@ -1,24 +1,29 @@
+interface CardImages {
+    image_url: string;
+    [key: string]: unknown;
+};
+
 export interface BaseCard {
     name: string,
     type: string,
     frameType: string,
     desc: string,
+    card_images: CardImages[],
+    race: string,
+    humanReadableCardType: string,
     [key: string]: unknown
 };
 
 export interface SpellCard extends BaseCard {
-    frameType: "spell",
-    humanReadableCardType: string
+    frameType: "spell"
 };
 
 export interface TrapCard extends BaseCard {
-    frameType: "trap",
-    humanReadableCardType: string
+    frameType: "trap"
 };
 
 export interface MonsterCard extends BaseCard {
     typeline: string[],
-    race: string,
     atk: number,            // When -1, then attack = "?"
     def: number | null,     // When -1, then defense = "?" (null for link monsters)
     attribute: string,
