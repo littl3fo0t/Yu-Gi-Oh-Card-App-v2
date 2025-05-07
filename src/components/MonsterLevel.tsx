@@ -7,14 +7,16 @@ interface MonsterLevelProps {
 
 const MonsterLevel: React.FC<MonsterLevelProps> = ({ level }) => {
     return (
-        <td>
-            <img
-                src={level_svg}
-                alt="Level Star"
-                className="image is-24x24" 
-            />
-            {level}
-        </td>
+        <>
+            <td>
+                <img
+                    src={level_svg}
+                    alt="Level Star"
+                    className="image is-24x24"
+                />
+            </td>
+            <td>{level}</td>
+        </>
     );
 };
 

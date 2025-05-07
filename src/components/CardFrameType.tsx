@@ -7,14 +7,16 @@ interface CardFrameTypeProps {
 
 const CardFrameType: React.FC<CardFrameTypeProps> = ({ frameType }) => {
     return (
-        <td>
-            <img
-                src={cardFrameTypeMap[frameType]}
-                alt={frameType}
-                className="image is-24x24" 
-            />
-            {frameType.toUpperCase()}
-        </td>
+        <>
+            <td>
+                <img
+                    src={cardFrameTypeMap[frameType]}
+                    alt={frameType}
+                    className="image is-24x24"
+                />
+            </td>
+            <td>{frameType.toUpperCase()}</td>
+        </>
     );
 };
 

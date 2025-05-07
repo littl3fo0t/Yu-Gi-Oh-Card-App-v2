@@ -6,6 +6,8 @@ import MonsterAttribute from "@/components/MonsterAttribute";
 import MonsterLevel from "@/components/MonsterLevel";
 import MonsterTypeLine from "@/components/MonsterTypeLine";
 import CardDesc from "@/components/CardDesc";
+import MonsterATK from "@/components/MonsterATK";
+import MonsterDEF from "@/components/MonsterDEF";
 
 interface ViewCardProps {
     card: Card
@@ -21,6 +23,8 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
         desc
     } = card;
 
+    const isSpellOrTrapCard = frameType === "spell" || frameType === "trap";
+
     return (
         <div className="box">
             <h2 className="title is-2 has-text-centered">
@@ -34,8 +38,8 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
                     <table className="table">
                         <tbody>
                             <tr>
-                                {(frameType === "spell" || frameType === "trap") && <CardFrameType frameType={frameType} />}
-                                {(frameType === "spell" || frameType === "trap") && <CardRace
+                                {isSpellOrTrapCard && <CardFrameType frameType={frameType} />}
+                                {isSpellOrTrapCard && <CardRace
                                     frameType={frameType}
                                     race={race}
                                     humanReadableCardType={humanReadableCardType}
@@ -44,7 +48,12 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
                                 {"level" in card && (card as MonsterCard).level && <MonsterLevel level={(card as MonsterCard).level} />}
                             </tr>
                             {"typeline" in card && <MonsterTypeLine typeline={(card as MonsterCard).typeline} />}
-                            {!(card as MonsterCard).typeline.includes("Pendulum") && <CardDesc desc={desc} />}
+                            {(isSpellOrTrapCard || !(card as MonsterCard).typeline.includes("Pendulum")) && <CardDesc desc={desc} />}
+                            <tr>
+                                {"atk" in card && <MonsterATK atk={(card as MonsterCard).atk} />}
+                                {!("linkval" in card) && <MonsterDEF def={(card as MonsterCard).def} />}
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>

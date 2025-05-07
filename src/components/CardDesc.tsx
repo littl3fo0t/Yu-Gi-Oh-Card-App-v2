@@ -9,13 +9,12 @@ const CardDesc: React.FC<CardDescProps> = ({ desc }) => {
     const descWithBlankLines = formattedDesc.map((line, index) => (
         <React.Fragment key={index}>
           {line}
-          <br />
-          <br />
+          {index === formattedDesc.length - 1 ? "" : <><br /><br /></>}
         </React.Fragment>
       ));
     return (
         <tr>
-            <td colSpan={2} rowSpan={4}>
+            <td colSpan={4}>
                 {descWithBlankLines}
             </td>
         </tr>

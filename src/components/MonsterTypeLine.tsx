@@ -5,10 +5,10 @@ interface MonsterTypeLineProps {
 };
 
 const MonsterTypeLine: React.FC<MonsterTypeLineProps> = ({ typeline }) => {
-    const formattedTypeLine = `[${typeline.join("/")}]`;
+    const formattedTypeLine = `[ ${typeline.join(" / ")} ]`;
     return (
         <tr>
-            <td colSpan={2}>
+            <td colSpan={4}>
                 {formattedTypeLine}
             </td>
         </tr>

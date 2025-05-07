@@ -7,14 +7,16 @@ interface MonsterAttributeProps {
 
 const MonsterAttribute: React.FC<MonsterAttributeProps> = ({ attribute }) => {
     return (
-        <td>
-            <img
-                src={monsterAttributeMap[attribute]}
-                alt={attribute}
-                className="image is-24x24" 
-            />
-            {attribute}
-        </td>
+        <>
+            <td>
+                <img
+                    src={monsterAttributeMap[attribute]}
+                    alt={attribute}
+                    className="image is-24x24"
+                />
+            </td>
+            <td>{attribute}</td>
+        </>
     );
 };
 
