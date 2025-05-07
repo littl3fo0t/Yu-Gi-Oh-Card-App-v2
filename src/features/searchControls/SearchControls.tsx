@@ -8,15 +8,22 @@ import {
     getAllCards,
     loadCardDataByFuzzyName,
     loadCardDataByName,
-    isLoadingCards
+    isLoadingCards,
+    loadRandomCardData
 } from "@/features/cardData/cardDataSlice";
 
-const SearchControls: React.FC = () => {
+interface SearchControlsProps {
+    setError: (error: string | null) => void
+};
+
+const SearchControls: React.FC<SearchControlsProps> = ({setError }) => {
     const dispatch = useDispatch<AppDispatch>();
+
     const cards = useSelector(getAllCards);
     const isLoading = useSelector(isLoadingCards);
     const searchTerm = useSelector(getSearchTerm);
     const searchBy = useSelector(getSearchBy);
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,30 +35,37 @@ const SearchControls: React.FC = () => {
                 case "fname":
                     await dispatch(loadCardDataByFuzzyName(searchTerm as string)).unwrap();
                     break;
+                case "random":
+                    await dispatch(loadRandomCardData()).unwrap();
+                    break;
                 default:
-                    console.error("Invalid search type");
+                    //console.error("Invalid search type");
+                    setError("Invalid search type")
             }
-        } catch (error) {
-            console.error("Failed to fetch cards:", error);
+        } catch (error: any) {
+            //console.error("Failed to fetch cards:", error);
+            setError(error ?? "Unknown error occurred.");
         }
     };
 
     console.log("Card Data:", cards);
 
     return (
-        <div className="box">
-            <form onSubmit={handleSubmit}>
-                <SearchBy />
-                <SearchTerm />
-                <button 
-                    type="submit"
-                    className={ isLoading ? "button is-white is-loading" : "button is-white" }
-                    disabled={isLoading}
-                >
-                    Fetch Card Data
-                </button>
-            </form>
-        </div>
+        <>
+            <div className="box">
+                <form onSubmit={handleSubmit}>
+                    <SearchBy />
+                    <SearchTerm />
+                    <button
+                        type="submit"
+                        className={isLoading ? "button is-white is-loading" : "button is-white"}
+                        disabled={isLoading}
+                    >
+                        Fetch Card Data
+                    </button>
+                </form>
+            </div>
+        </>
     );
 };
 

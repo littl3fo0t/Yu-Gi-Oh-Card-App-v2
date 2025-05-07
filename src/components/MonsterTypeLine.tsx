@@ -9,7 +9,7 @@ const MonsterTypeLine: React.FC<MonsterTypeLineProps> = ({ typeline }) => {
     return (
         <tr>
             <td colSpan={4}>
-                {formattedTypeLine}
+                <strong>{formattedTypeLine}</strong>
             </td>
         </tr>
     );
