@@ -25,7 +25,7 @@ const SearchBy: React.FC = () => {
                     <option value="name">Exact Name</option>
                     <option value="fname">Fuzzy Name</option>
                     <option value="random" disabled>Random Card</option>
-                    <option value="level" disabled>Level/Rank/Link Value</option>
+                    <option value="level">Level/Rank/Link Value</option>
                 </select>
             </div>
         </div>

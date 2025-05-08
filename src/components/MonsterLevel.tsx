@@ -9,16 +9,16 @@ interface MonsterLevelProps {
 
 const MonsterLevel: React.FC<MonsterLevelProps> = ({ level, isXYZMonster }) => {
     return (
-        <>
-            <td>
+        <td colSpan={2}>
+            <div style={{ "display": "flex" }}>
                 <img
                     src={isXYZMonster ? RANK_WEBP : LEVEL_WEBP}
                     alt={(isXYZMonster ? "Rank" : "Level") + " Star"}
                     className="image is-24x24"
                 />
-            </td>
-            <td>{level}</td>
-        </>
+                &nbsp;{level}
+            </div>
+        </td>
     );
 };
 

@@ -83,10 +83,10 @@ const SearchTerm: React.FC = () => {
         );
     } else if (searchBy === "level") {
         return (
-            <>
-                <p>
-                    Retrieve all cards with a Level/Rank/Link value between
-                    <select 
+            <div className="content">
+                Retrieve all monster cards with a Level/Rank/Link value between&nbsp;
+                <div className="select is-small">
+                    <select
                         id="minLevel"
                         value={minLevel}
                         onChange={(e: ChangeEvent<HTMLSelectElement>) => setMinLevel(parseInt(e.target.value))}
@@ -95,21 +95,23 @@ const SearchTerm: React.FC = () => {
                             <option key={level.value} value={level.value}>{level.label}</option>
                         ))}
                     </select>
-                    and
-                    <select 
-                        id="maxLevel"
-                        value={maxLevel}
-                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setMaxLevel(parseInt(e.target.value))}
-                    >
-                        {levelOptions
-                            .filter(level => level.value >= minLevel)
-                            .map(level => (
-                                <option key={level.value} value={level.value}>{level.label}</option>
-                            ))
-                        }
-                    </select>
-                </p>
-            </>
+                </div>
+                &nbsp;and&nbsp;
+                <div className="select is-small">
+                    <select
+                    id="maxLevel"
+                    value={maxLevel}
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => setMaxLevel(parseInt(e.target.value))}
+                >
+                    {levelOptions
+                        .filter(level => level.value >= minLevel)
+                        .map(level => (
+                            <option key={level.value} value={level.value}>{level.label}</option>
+                        ))
+                    }
+                </select>
+                </div>
+            </div>
         );
     } else {
         return null;

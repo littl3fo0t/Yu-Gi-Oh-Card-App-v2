@@ -9,20 +9,24 @@ import {
     loadCardDataByFuzzyName,
     loadCardDataByName,
     isLoadingCards,
-    loadRandomCardData
+    loadRandomCardData,
+    loadCardDataByLevel
 } from "@/features/cardData/cardDataSlice";
+import isDarkMode from "@/utils/isDarkMode";
 
 interface SearchControlsProps {
     setError: (error: string | null) => void
 };
 
-const SearchControls: React.FC<SearchControlsProps> = ({setError }) => {
+const SearchControls: React.FC<SearchControlsProps> = ({ setError }) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const cards = useSelector(getAllCards);
     const isLoading = useSelector(isLoadingCards);
     const searchTerm = useSelector(getSearchTerm);
     const searchBy = useSelector(getSearchBy);
+
+    const buttonColor = isDarkMode ? "is-white" : "is-black";
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -37,6 +41,9 @@ const SearchControls: React.FC<SearchControlsProps> = ({setError }) => {
                     break;
                 case "random":
                     await dispatch(loadRandomCardData()).unwrap();
+                    break;
+                case "level":
+                    await dispatch(loadCardDataByLevel(searchTerm as [number, number])).unwrap();
                     break;
                 default:
                     //console.error("Invalid search type");
@@ -58,10 +65,10 @@ const SearchControls: React.FC<SearchControlsProps> = ({setError }) => {
                     <SearchTerm />
                     <button
                         type="submit"
-                        className={isLoading ? "button is-white is-loading" : "button is-white"}
+                        className={isLoading ? `button ${buttonColor} is-loading` : `button ${buttonColor}`}
                         disabled={isLoading}
                     >
-                        Fetch Card Data
+                        Search
                     </button>
                 </form>
             </div>

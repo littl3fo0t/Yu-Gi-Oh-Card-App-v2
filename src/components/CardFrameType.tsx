@@ -7,16 +7,16 @@ interface CardFrameTypeProps {
 
 const CardFrameType: React.FC<CardFrameTypeProps> = ({ frameType }) => {
     return (
-        <>
-            <td>
+        <td colSpan={2}>
+            <div style={{ "display": "flex" }}>
                 <img
                     src={cardFrameTypeMap[frameType]}
                     alt={frameType}
                     className="image is-24x24"
                 />
-            </td>
-            <td>{frameType.toUpperCase()}</td>
-        </>
+                &nbsp;{frameType.toUpperCase()}
+            </div>
+        </td>
     );
 };
 

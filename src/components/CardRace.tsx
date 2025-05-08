@@ -10,16 +10,16 @@ interface CardRaceProps {
 
 const CardRace: React.FC<CardRaceProps> = ({ frameType, race, humanReadableCardType }) => {
     return (
-        <>
-            <td>
+        <td colSpan={2}>
+            <div style={{ "display": "flex" }}>
                 <img
                     src={cardRaceMap[frameType][race]}
                     alt={humanReadableCardType}
                     className="image is-24x24"
                 />
-            </td>
-            <td>{humanReadableCardType}</td>
-        </>
+                &nbsp;{humanReadableCardType}
+            </div>
+        </td>
     );
 };
 

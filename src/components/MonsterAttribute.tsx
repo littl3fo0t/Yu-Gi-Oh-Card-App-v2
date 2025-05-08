@@ -8,16 +8,16 @@ interface MonsterAttributeProps {
 
 const MonsterAttribute: React.FC<MonsterAttributeProps> = ({ attribute, colSpan }) => {
     return (
-        <>
-            <td colSpan={colSpan}>
+        <td colSpan={colSpan}>
+            <div style={{ "display": "flex" }}>
                 <img
                     src={monsterAttributeMap[attribute]}
                     alt={attribute}
                     className="image is-24x24"
                 />
-            </td>
-            <td colSpan={colSpan}>{attribute}</td>
-        </>
+                &nbsp;{attribute}
+            </div>
+        </td>
     );
 };
 

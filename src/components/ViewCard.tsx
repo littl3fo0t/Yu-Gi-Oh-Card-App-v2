@@ -33,7 +33,7 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
     const isPendulumMonster = isMonsterCard ? monsterCard.typeline.includes("Pendulum") : false;
 
     return (
-        <div className="box">
+        <div className="box" id="viewCard">
             <h2 className="title is-2 has-text-centered">
                 {name}
             </h2>
@@ -51,7 +51,7 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
                                     race={race}
                                     humanReadableCardType={humanReadableCardType}
                                 />}
-                                {"attribute" in card && <MonsterAttribute attribute={monsterCard.attribute} colSpan={isLinkMonster ? 2 : 1} />}
+                                {"attribute" in card && <MonsterAttribute attribute={monsterCard.attribute} colSpan={isLinkMonster ? 4 : 2} />}
                                 {"level" in card && monsterCard.level && <MonsterLevel level={monsterCard.level} isXYZMonster={isXYZMonster} />}
                             </tr>
                             {"typeline" in card && <MonsterTypeLine typeline={monsterCard.typeline} />}
@@ -59,7 +59,7 @@ const ViewCard: React.FC<ViewCardProps> = ({ card }) => {
                             <CardDesc desc={isPendulumMonster ? monsterCard.monster_desc : desc} isPendulumMonster={isPendulumMonster} />
                             <tr>
                                 {"atk" in card && <MonsterATK atk={monsterCard.atk} />}
-                                {("def" in card && monsterCard.def) && <MonsterDEF def={monsterCard.def} />}
+                                {("def" in card && monsterCard.def !== null) && <MonsterDEF def={monsterCard.def} />}
                                 {isLinkMonster && <MonsterLinkVal linkval={monsterCard.linkval} />}
                             </tr>
                         </tbody>

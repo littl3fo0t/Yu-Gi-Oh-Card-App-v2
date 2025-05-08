@@ -17,15 +17,15 @@ const Introduction: React.FC = () => {
                     Or click <a href="https://github.com/littl3fo0t/Yu-Gi-Oh-Card-App">here</a> to see the first version (built using only HTML and Vanilla JavaScript).
                 </p>
                 <p>
-                    Select how you would like to search by in the dropdown below and provide any further necessary information and click on the <strong>Fetch Card Data</strong> button or press <kbd>Enter</kbd>.
+                    Select how you would like to search by in the dropdown below and provide any further necessary information and click on the <strong>Search</strong> button or press <kbd>Enter</kbd>.
                     <br />
                     The app can search cards using the following parameters:
                     <br />
                     &#9989; <strong>Exact</strong> Name
                     <br />
-                    &#10060; <strong>Fuzzy</strong> Name (not fully yet supported)
+                    &#9989; <strong>Fuzzy</strong> Name
                     <br />
-                    &#10060; <strong>Level/Rank/Link Value</strong> (not yet supported)
+                    &#9989; <strong>Level/Rank/Link Value</strong>
                     <br />
                     &#10060; Or just return a <strong>random</strong> card (not yet supported)
                 </p>
