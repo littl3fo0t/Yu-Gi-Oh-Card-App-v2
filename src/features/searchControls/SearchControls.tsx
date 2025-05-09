@@ -15,10 +15,20 @@ import {
 import isDarkMode from "@/utils/isDarkMode";
 
 interface SearchControlsProps {
-    setError: (error: string | null) => void
+    setError: (error: string | null) => void,
+    setSpellChkBox: (checked: boolean) => void,
+    setTrapChkBox: (checked: boolean) => void,
+    setMonsterChkBox: (checked: boolean) => void,
+    setFilterTerms: (terms: string[]) => void
 };
 
-const SearchControls: React.FC<SearchControlsProps> = ({ setError }) => {
+const SearchControls: React.FC<SearchControlsProps> = ({
+    setError,
+    setSpellChkBox,
+    setTrapChkBox,
+    setMonsterChkBox,
+    setFilterTerms
+}) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const cards = useSelector(getAllCards);
@@ -31,6 +41,13 @@ const SearchControls: React.FC<SearchControlsProps> = ({ setError }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Reset checkboxes and filter terms
+        setSpellChkBox(false);
+        setTrapChkBox(false);
+        setMonsterChkBox(false);
+        setFilterTerms([]);
+
         try {
             switch (searchBy) {
                 case "name":

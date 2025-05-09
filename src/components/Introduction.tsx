@@ -27,7 +27,7 @@ const Introduction: React.FC = () => {
                     <br />
                     &#9989; <strong>Level/Rank/Link Value</strong>
                     <br />
-                    &#10060; Or just return a <strong>random</strong> card (not yet supported)
+                    <del>&#10060; Or just return a <strong>random</strong> card</del> (feature dropped - see the <code>README.md</code> for explanation)
                 </p>
             </div>
         </div>

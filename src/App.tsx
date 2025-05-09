@@ -27,6 +27,13 @@ function App() {
   const [cardToView, setCardToView] = useState<Card | null>(null);
   const [filterTerms, setFilterTerms] = useState<string[]>([]);
   const [filteredResults, setFilteredResults] = useState<Card[]>([]);
+  const [spellChkBox, setSpellChkBox] = useState(false);
+  const [trapChkBox, setTrapChkBox] = useState(false);
+  const [monsterChkBox, setMonsterChkBox] = useState(false);
+  const onlySpellCards = cards ? cards.every(card => card.frameType === "spell") : false;
+  const onlyTrapCards = cards ? cards.every(card => card.frameType === "trap") : false;
+  const onlyMonsterCards = cards ? cards.every(card => "attribute" in card) : false;
+  const showFilterOptions = !onlySpellCards && !onlyTrapCards && !onlyMonsterCards;
 
   const addFilterTerm = (term: string) => {
     setFilterTerms(prev => [...prev, term]);
@@ -61,7 +68,7 @@ function App() {
           const results = filterCardData(term, cards);
           results.forEach(card => uniqueResults.add(card));
         });
-        setFilteredResults([...Array.from(uniqueResults)].sort((a,b) => {
+        setFilteredResults([...Array.from(uniqueResults)].sort((a, b) => {
           return a.name.localeCompare(b.name);
         }));
       }
@@ -84,7 +91,13 @@ function App() {
 
       <Disclaimer />
 
-      <SearchControls setError={setError} />
+      <SearchControls
+        setError={setError}
+        setSpellChkBox={setSpellChkBox}
+        setTrapChkBox={setTrapChkBox}
+        setMonsterChkBox={setMonsterChkBox}
+        setFilterTerms={setFilterTerms}
+      />
 
       {cardToView && <ViewCard card={cardToView} />}
 
@@ -94,7 +107,19 @@ function App() {
 
       {(cards && cards.length > 1) && (
         <div className="box">
-          <FilterCardData cards={cards} addFilterTerm={addFilterTerm} removeFilterTerm={removeFilterTerm} />
+          {showFilterOptions && (
+            <FilterCardData
+              cards={cards}
+              addFilterTerm={addFilterTerm}
+              removeFilterTerm={removeFilterTerm}
+              spellChkBox={spellChkBox}
+              trapChkBox={trapChkBox}
+              monsterChkBox={monsterChkBox}
+              setSpellChkBox={setSpellChkBox}
+              setTrapChkBox={setTrapChkBox}
+              setMonsterChkBox={setMonsterChkBox}
+            />
+          )}
           <CardData cards={filterTerms.length > 0 ? filteredResults.slice(0, 1000) : cards.slice(0, 1000)} setCardToView={setCardToView} />
         </div>
       )}
