@@ -3,6 +3,12 @@
 # Yu-Gi-Oh! Card Searching App (Version 2)
 This is the second version of a series of simple card searching apps I've built for the **Yu-Gi-Oh! Trading Card Game**.
 
+## Disclaimer
+
+The literal and graphical information presented on this site about **Yu-Gi-Oh!**, including card images, the attribute, level/rank and type symbols, and card text, is copyright 4K Media Inc, a subsidiary of Konami Digital Entertainment, Inc.
+This project is not produced by, endorsed by, supported by, or affiliated with 4k Media or Konami Digital Entertainment.
+This project is built and intended only for educational purposes.
+
 ## Built With
 
 As I mentioned in the first version of this app, my plan was to re-create it using the following technologies:
