@@ -1,54 +1,35 @@
-# React + TypeScript + Vite
+# Yu-Gi-Oh! Card Searching App (Version 2)
+This is the second version of a series of simple card searching apps I've built for the **Yu-Gi-Oh! Trading Card Game** - this time made using React, Redux, TypeScript and Vite. However, just like the first one, this version uses the free Yu-Gi-Oh! card API from the [YGOProDeck Webiste](https://ygoprodeck.com/api-guide/) and [Bulma CSS](https://bulma.io/) for the styling.
+If you are wondering why a Yu-Gi-Oh! card searching app, please see the [```README.md```](https://github.com/littl3fo0t/Yu-Gi-Oh-Card-App/blob/main/README.md) file from the first version.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
 
-Currently, two official plugins are available:
+### Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. You will need to have [Node.js](https://nodejs.org/) downloaded and installed. Run the following command to see if ```Node.js``` is properly installed:
+```sh
+node --version
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Ensure that you have the the latest version of ```npm```:
+```sh
+npm install npm@latest -g
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Installation
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+1. Clone the repository to your local machine using the following command:
+```sh
+git clone https://github.com/littl3fo0t/Yu-Gi-Oh-Card-App-v2.git
+```
+Or alternatively, you can download the repository as a ZIP file if you do not have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
+
+2. ```cd``` into the ```Yu-Gi-Oh-Card-App-v2``` directory and install the necessary NPM packages:
+```sh
+npm install
+```
+
+3. Run the app in ```dev``` mode:
+```sh
+npm run dev
 ```
