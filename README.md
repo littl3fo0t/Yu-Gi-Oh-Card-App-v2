@@ -72,7 +72,7 @@ Basic error handling has been implmented and to avoid any potential crashes or s
 
 ## Author
 
-Thomas Brun - [@littl3fo0t]("https://github.com/littl3fo0t) | [LinkedIn](https://www.linkedin.com/in/thomasbrun1/) | thomas.brun.1703@hotmail.com
+Thomas Brun - @littl3fo0t | [LinkedIn](https://www.linkedin.com/in/thomasbrun1/) | thomas.brun.1703@hotmail.com
 
 Project Link: [https://github.com/littl3fo0t/Yu-Gi-Oh-Card-App-v2](https://github.com/littl3fo0t/Yu-Gi-Oh-Card-App-v2)
 
