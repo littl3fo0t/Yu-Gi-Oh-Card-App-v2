@@ -79,7 +79,15 @@ function App() {
 
   const errorMessage = useSelector(getErrorMessage);
   const failedToLoad = useSelector(failedToLoadCards);
-  const [error, setError] = useState(errorMessage);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (failedToLoad && errorMessage) {
+      setError(errorMessage);
+    } else {
+      setError("");
+    }
+  }, [failedToLoad, dispatch]);
 
   return (
     <>

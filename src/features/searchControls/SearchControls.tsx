@@ -15,7 +15,7 @@ import {
 import isDarkMode from "@/utils/isDarkMode";
 
 interface SearchControlsProps {
-    setError: (error: string | null) => void,
+    setError: (error: string) => void,
     setSpellChkBox: (checked: boolean) => void,
     setTrapChkBox: (checked: boolean) => void,
     setMonsterChkBox: (checked: boolean) => void,
