@@ -60,7 +60,107 @@ export const loadCardDataByFuzzyName = createAsyncThunk<
     }
 );
 
+
+/* export const loadCardDataByLevel = createAsyncThunk<
+    MonsterCard[],
+    [number, number],
+    { rejectValue: string }
+>(
+    "cardData/loadCardDataByLevel",
+    async ([minLevel, maxLevel], { rejectWithValue }) => {
+        try {
+            let endpoint: string;
+            let cards: Card[];
+
+            if (minLevel === maxLevel) {
+                endpoint = `${apiURL}level=${minLevel}`;
+                cards = await fetchCardData(endpoint);
+                //console.log("Cards:", cards)
+
+                if (minLevel >= 1 && minLevel <= 6) {
+                    endpoint = `${apiURL}link=${minLevel}`;
+                    cards = cards.concat(await fetchCardData(endpoint));
+                    //console.log("Cards updated:", cards);
+                }
+            } else {
+                endpoint = `${apiURL}level=gte${minLevel}`;
+                const minLevelCards = new Set(await fetchCardData(endpoint));
+                //console.log("minLevelCards:", minLevelCards);
+
+                endpoint = `${apiURL}level=lte${maxLevel}`;
+                const maxLevelCards = new Set(await fetchCardData(endpoint));
+                //console.log("maxLevelCards:", maxLevelCards);
+
+                if (minLevel >= 1 && minLevel <= 6) {
+                    const linkMonsters = await fetchCardData(`${apiURL}link=gte${minLevel}`);
+                    linkMonsters.forEach(card => minLevelCards.add(card));
+                    //console.log("minLevelCards updated:", minLevelCards);
+                }
+
+                if (maxLevel <= 6) {
+                    const linkMonsters = await fetchCardData(`${apiURL}link=lte${maxLevel}`);
+                    linkMonsters.forEach(card => maxLevelCards.add(card));
+                    //console.log("maxLevelCards updated:", maxLevelCards);
+                }
+
+                //console.log("Common elements:", [...minLevelCards].filter(cardA => [...maxLevelCards].some(cardB => cardA.name === cardB.name)));
+                cards = [...minLevelCards].filter(cardA => [...maxLevelCards].some(cardB => cardA.name === cardB.name));
+            }
+
+            return cards as MonsterCard[];
+        } catch (error: any) {
+            return rejectWithValue(error.message ?? "Unknown error occured when trying to search by level");
+        }
+    }
+);
+ */
 export const loadCardDataByLevel = createAsyncThunk<
+    MonsterCard[],
+    [number, number],
+    { rejectValue: string }
+>(
+    "cardData/loadCardDataByLevel",
+    async ([minLevel, maxLevel], { rejectWithValue }) => {
+        try {
+            let cards: Card[];
+
+            // If levels match, search for matching cards
+            if (minLevel === maxLevel) {
+                cards = await fetchCardData(`${apiURL}level=${minLevel}`);
+
+                // If levels match and are between 1 and 6, include link monsters as well
+                if (minLevel >= 1 && maxLevel <= 6) {
+                    cards = cards.concat(await fetchCardData(`${apiURL}link=${minLevel}`));
+                }
+
+                return cards as MonsterCard[];
+            } else {    // if levels don't match, return ALL cards and filter from there
+                cards = await fetchCardData("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+                let monsterCards = cards.filter((card): card is MonsterCard => "level" in card);
+
+                // Filter monster cards
+                monsterCards = monsterCards.filter(card => {
+                    const level = card.level ?? 0;
+                    const linkval = card.linkval ?? 0;
+                    return (
+                        (card.typeline.includes("Link") && linkval >= minLevel && linkval <= maxLevel) ||
+                        (!card.typeline.includes("Link") && level >= minLevel && level <= maxLevel)
+                    )
+                });
+
+                if (!monsterCards || monsterCards.length === 0) {
+                    return rejectWithValue("No monster cards found.");
+                } else {
+                    return monsterCards;
+                }
+            }
+        } catch (error: any) {
+            return rejectWithValue(error.message ?? "Unknown error occured when trying to search by level");
+        }
+    }
+);
+
+/* export const loadCardDataByLevel = createAsyncThunk<
     MonsterCard[],          // Only monster cards should be returned when searching by level
     [number, number],
     { rejectValue: string }
@@ -95,7 +195,7 @@ export const loadCardDataByLevel = createAsyncThunk<
             return rejectWithValue(error.message ?? "Unknown error occured when trying to search by level");
         }
     }
-);
+); */
 
 export const loadRandomCardData = createAsyncThunk<
     Card[],

@@ -36,6 +36,7 @@ const SearchControls: React.FC<SearchControlsProps> = ({
     const searchTerm = useSelector(getSearchTerm);
     const searchBy = useSelector(getSearchBy);
 
+    const showButton = (searchTerm && searchBy) || searchBy === "random";
     const buttonColor = isDarkMode ? "is-white" : "is-black";
 
 
@@ -80,13 +81,15 @@ const SearchControls: React.FC<SearchControlsProps> = ({
                 <form onSubmit={handleSubmit}>
                     <SearchBy />
                     <SearchTerm />
-                    <button
-                        type="submit"
-                        className={isLoading ? `button ${buttonColor} is-loading` : `button ${buttonColor}`}
-                        disabled={isLoading}
-                    >
-                        Search
-                    </button>
+                    {showButton && (
+                        <button
+                            type="submit"
+                            className={isLoading ? `button ${buttonColor} is-loading` : `button ${buttonColor}`}
+                            disabled={isLoading}
+                        >
+                            Search
+                        </button>
+                    )}
                 </form>
             </div>
         </>
